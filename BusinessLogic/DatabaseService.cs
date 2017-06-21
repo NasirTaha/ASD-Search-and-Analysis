@@ -4,13 +4,62 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DataAccess;
 namespace BusinessLogic
 {
-   public class DatabaseService
+   public static class DatabaseService
     {
-        public bool connected  { get; set; }
-        public DataSet queryReasult { get; set; }
+        public static bool connected  { get; set; }
+        public static DataSet queryReasult { get; set; }
+       static localDatabaseEntities db = new localDatabaseEntities();
+        public static bool AddSearch(Search search)
+        {
+            bool result;
+            try
+            {
+                AutoMapper.Mapper.Initialize(cfg => {
+                    cfg.CreateMap<BusinessLogic.Search, DataAccess.Search>();
+                });
+                var newSearch = AutoMapper.Mapper.Map<DataAccess.Search>(search);
+                db.Searches.Add(newSearch);
+                if (db.SaveChanges() > 0)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public static int deleteOldResults(DateTime from)
+        {
+            int result = 0;
+            try
+            {
+
+                var list = db.Searches.Where(s => s.SearchDate < from).ToList();
+                foreach (var item in list)
+                {
+                    db.Searches.Remove(item);
+                }
+                result = db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                result = 0;
+            }
+
+            return result;
+        }
 
 
     }

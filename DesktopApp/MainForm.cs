@@ -26,28 +26,36 @@ namespace DesktopApp
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            //            circularProgressBar1.Update();
+            //         backgroundWorker1.RunWorkerAsync();
             try
             {
-                var query = txtKeyword.Text;
 
+                var query = txtKeyword.Text;
                 List<SearchResult> results = new List<SearchResult>();
                 if (!string.IsNullOrEmpty(query))
                 {
                     results = BingWebSearcher.Search(query);
-
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
                     string contents = string.Empty;
                     //Get text from each result
                     foreach (SearchResult r in results)
                     {
-                        WebRequest request = WebRequest.Create(r.Link);
-                        request.Method = "GET";
-                        WebResponse response = request.GetResponse();
-                        Stream stream = response.GetResponseStream();
-                        StreamReader reader = new StreamReader(stream);
-                        contents += reader.ReadToEnd();
-                        reader.Close();
-                        response.Close();
+                        try
+                        {
+                            WebRequest request = WebRequest.Create(r.Link);
+                            request.Method = "GET";
+                            WebResponse response = request.GetResponse();
+                            Stream stream = response.GetResponseStream();
+                            StreamReader reader = new StreamReader(stream);
+                            contents += reader.ReadToEnd();
+                            reader.Close();
+                            response.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            //To do: write exception to log message
+                        }
                     }
 
                     //Wrire to text file
@@ -56,24 +64,35 @@ namespace DesktopApp
                     //Path.Combine(Environment.CurrentDirectory, "..\\..\\", fileName);
                     //string createText = "Hello and Welcome" + Environment.NewLine;
                     File.WriteAllText(path, contents);
-                    MessageBox.Show("Results saved in text file");
+                    //MessageBox.Show("Results saved in text file");
                     this.chart1.Series.Clear();
                     int positiveresp = getPositiveParameters();
                     int negativeresp = getNegativeParameters();
                     chart1.Series.Add("Positive");
                     chart1.Series["Positive"].ChartType = SeriesChartType.Column;
-                    chart1.Series["Positive"].Points.AddXY(0,positiveresp);
+                    chart1.Series["Positive"].Points.AddXY(0, positiveresp);
                     //chart1.Series["Positive"].ChartArea = "ChartArea1";
                     chart1.Series["Positive"].Color = System.Drawing.Color.Blue;
                     chart1.Series.Add("Negative");
                     chart1.Series["Negative"].ChartType = SeriesChartType.Column;
-                    chart1.Series["Negative"].Points.AddXY(1,negativeresp);
+                    chart1.Series["Negative"].Points.AddXY(1, negativeresp);
                     //chart1.Series["Negative"].ChartArea = "ChartArea1";
                     chart1.Series["Negative"].Color = System.Drawing.Color.Red;
 
 
                     // this.chart1.Series["Positive"].Points.AddXY("Positive", positiveresp);
                     //this.chart1.Series["Negative"].Points.AddXY("Negative", negativeresp);
+
+                    //Save search to DB
+                    BusinessLogic.DatabaseService.AddSearch(new Search
+                    {
+                        Keyword = txtKeyword.Text,
+                        Negative = negativeresp,
+                        Positive = positiveresp,
+                        SearchDate = DateTime.Now
+                    });
+                    //Delete old records
+                    BusinessLogic.DatabaseService.deleteOldResults(DateTime.Now);
 
                 }
 
@@ -82,6 +101,8 @@ namespace DesktopApp
             {
                 MessageBox.Show(ex.Message);
             }
+
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -255,6 +276,14 @@ namespace DesktopApp
 
         }
 
-        
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //circularProgressBar1.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.
+        }
     }
     }
