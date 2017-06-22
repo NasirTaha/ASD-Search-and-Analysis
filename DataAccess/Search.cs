@@ -16,8 +16,8 @@ namespace DataAccess
     {
         public int Id { get; set; }
         public System.DateTime SearchDate { get; set; }
-        public double Positive { get; set; }
-        public double Negative { get; set; }
+        public int Positive { get; set; }
+        public int Negative { get; set; }
         public string Keyword { get; set; }
     }
 }

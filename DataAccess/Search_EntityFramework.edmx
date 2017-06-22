@@ -11,8 +11,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SearchDate" Type="datetime" Nullable="false" />
-          <Property Name="Positive" Type="float" Nullable="false" />
-          <Property Name="Negative" Type="float" Nullable="false" />
+          <Property Name="Positive" Type="int" Nullable="false" />
+          <Property Name="Negative" Type="int" Nullable="false" />
           <Property Name="Keyword" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="localDatabaseModelStoreContainer">
@@ -22,19 +22,19 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="localDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="localDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Searches" EntityType="localDatabaseModel.Search" />
+        </EntityContainer>
         <EntityType Name="Search">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SearchDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Positive" Type="Double" Nullable="false" />
-          <Property Name="Negative" Type="Double" Nullable="false" />
-          <Property Name="Keyword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Positive" Type="Int32" Nullable="false" />
+          <Property Name="Negative" Type="Int32" Nullable="false" />
+          <Property Name="Keyword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="localDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Searches" EntityType="Self.Search" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -44,11 +44,11 @@
           <EntitySetMapping Name="Searches">
             <EntityTypeMapping TypeName="localDatabaseModel.Search">
               <MappingFragment StoreEntitySet="Search">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SearchDate" ColumnName="SearchDate" />
-                <ScalarProperty Name="Positive" ColumnName="Positive" />
-                <ScalarProperty Name="Negative" ColumnName="Negative" />
                 <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Negative" ColumnName="Negative" />
+                <ScalarProperty Name="Positive" ColumnName="Positive" />
+                <ScalarProperty Name="SearchDate" ColumnName="SearchDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

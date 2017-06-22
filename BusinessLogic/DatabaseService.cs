@@ -12,6 +12,21 @@ namespace BusinessLogic
         public static bool connected  { get; set; }
         public static DataSet queryReasult { get; set; }
        static localDatabaseEntities db = new localDatabaseEntities();
+
+        public static Search IsKeywordExist(String keyword)
+        {
+            Search result = null; 
+            
+            if (db.Searches.Where(s => s.Keyword == keyword).Any())
+            {
+                AutoMapper.Mapper.Initialize(cfg => {
+                    cfg.CreateMap<DataAccess.Search, BusinessLogic.Search>();
+                });
+                var search = db.Searches.Where(s => s.Keyword == keyword).SingleOrDefault();
+                result = AutoMapper.Mapper.Map<BusinessLogic.Search>(search);
+            }
+            return result;
+        }
         public static bool AddSearch(Search search)
         {
             bool result;

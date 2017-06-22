@@ -10,8 +10,8 @@ namespace BusinessLogic
     {
        private int _Id;
        private DateTime _SearchDate;
-       private float _Positive;
-       private float _Negative;
+       private int _Positive;
+       private int _Negative;
        private String _Keyword;
         public int Id
         {
@@ -23,12 +23,12 @@ namespace BusinessLogic
             get { return _SearchDate; }
             set { _SearchDate = value; }
         }
-        public float Positive
+        public int Positive
         {
             get { return _Positive; }
             set { _Positive = value; }
         }
-        public float Negative
+        public int Negative
         {
             get { return _Negative; }
             set { _Negative = value; }
@@ -42,11 +42,11 @@ namespace BusinessLogic
         {
             this._Id = 0;
             this._SearchDate = DateTime.MinValue;
-            this._Positive = float.MinValue;
-            this._Negative = float.MinValue;
+            this._Positive = int.MinValue;
+            this._Negative = int.MinValue;
             this._Keyword = String.Empty;
         }
-        public Search(int Id, DateTime SearchDate, float Positive, float Negative, String Keyword)
+        public Search(int Id, DateTime SearchDate, int Positive, int Negative, String Keyword)
         {
             this._Id = Id;
             this._SearchDate = SearchDate;
