@@ -19,5 +19,6 @@ namespace DataAccess
         public int Positive { get; set; }
         public int Negative { get; set; }
         public string Keyword { get; set; }
+        public Nullable<int> Total { get; set; }
     }
 }

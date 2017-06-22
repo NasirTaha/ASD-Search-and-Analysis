@@ -12,7 +12,8 @@ namespace BusinessLogic
        private DateTime _SearchDate;
        private int _Positive;
        private int _Negative;
-       private String _Keyword;
+        private int _Total;
+        private String _Keyword;
         public int Id
         {
             get { return _Id; }
@@ -32,6 +33,11 @@ namespace BusinessLogic
         {
             get { return _Negative; }
             set { _Negative = value; }
+        }
+        public int Total
+        {
+            get { return _Total; }
+            set { _Total= value; }
         }
         public String Keyword
         {

@@ -14,6 +14,7 @@
           <Property Name="Positive" Type="int" Nullable="false" />
           <Property Name="Negative" Type="int" Nullable="false" />
           <Property Name="Keyword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Total" Type="int" />
         </EntityType>
         <EntityContainer Name="localDatabaseModelStoreContainer">
           <EntitySet Name="Search" EntityType="Self.Search" Schema="dbo" store:Type="Tables" />
@@ -34,6 +35,7 @@
           <Property Name="Positive" Type="Int32" Nullable="false" />
           <Property Name="Negative" Type="Int32" Nullable="false" />
           <Property Name="Keyword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -44,6 +46,7 @@
           <EntitySetMapping Name="Searches">
             <EntityTypeMapping TypeName="localDatabaseModel.Search">
               <MappingFragment StoreEntitySet="Search">
+                <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Keyword" ColumnName="Keyword" />
                 <ScalarProperty Name="Negative" ColumnName="Negative" />
                 <ScalarProperty Name="Positive" ColumnName="Positive" />

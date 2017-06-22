@@ -140,7 +140,7 @@ namespace DesktopApp
             this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.circularProgressBar1.InnerMargin = 0;
             this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(42, 156);
+            this.circularProgressBar1.Location = new System.Drawing.Point(42, 285);
             this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar1.Name = "circularProgressBar1";
             this.circularProgressBar1.OuterColor = System.Drawing.Color.White;
@@ -149,7 +149,7 @@ namespace DesktopApp
             this.circularProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(151)))), ((int)(((byte)(218)))));
             this.circularProgressBar1.ProgressWidth = 17;
             this.circularProgressBar1.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.circularProgressBar1.Size = new System.Drawing.Size(180, 180);
+            this.circularProgressBar1.Size = new System.Drawing.Size(45, 51);
             this.circularProgressBar1.StartAngle = 270;
             this.circularProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.circularProgressBar1.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
@@ -167,7 +167,7 @@ namespace DesktopApp
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(618, 157);
+            this.label5.Location = new System.Drawing.Point(603, 157);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 8;
@@ -176,7 +176,7 @@ namespace DesktopApp
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(618, 210);
+            this.label6.Location = new System.Drawing.Point(603, 210);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 9;
@@ -185,36 +185,39 @@ namespace DesktopApp
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(618, 280);
+            this.label7.Location = new System.Drawing.Point(603, 270);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 13);
+            this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 10;
-            this.label7.Text = "Total";
+            this.label7.Text = "Total words";
             // 
             // lblPositive
             // 
             this.lblPositive.AutoSize = true;
-            this.lblPositive.Location = new System.Drawing.Point(707, 157);
+            this.lblPositive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPositive.Location = new System.Drawing.Point(698, 155);
             this.lblPositive.Name = "lblPositive";
-            this.lblPositive.Size = new System.Drawing.Size(13, 13);
+            this.lblPositive.Size = new System.Drawing.Size(19, 20);
             this.lblPositive.TabIndex = 11;
             this.lblPositive.Text = "0";
             // 
             // lblNegative
             // 
             this.lblNegative.AutoSize = true;
-            this.lblNegative.Location = new System.Drawing.Point(707, 210);
+            this.lblNegative.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNegative.Location = new System.Drawing.Point(698, 208);
             this.lblNegative.Name = "lblNegative";
-            this.lblNegative.Size = new System.Drawing.Size(13, 13);
+            this.lblNegative.Size = new System.Drawing.Size(19, 20);
             this.lblNegative.TabIndex = 12;
             this.lblNegative.Text = "0";
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(707, 280);
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(698, 267);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(13, 13);
+            this.lblTotal.Size = new System.Drawing.Size(19, 20);
             this.lblTotal.TabIndex = 13;
             this.lblTotal.Text = "0";
             // 

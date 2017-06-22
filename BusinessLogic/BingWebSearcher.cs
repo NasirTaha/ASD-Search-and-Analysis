@@ -21,7 +21,7 @@ namespace BusinessLogic
      
         public static List<SearchResult> Search(string queryFilePath)
         {            
-            var json = GetBingSearchJsonResult(queryFilePath);
+            var json = GetBingSearchJsonResult(new Keyword(queryFilePath));
             var result = JsonConvert.DeserializeObject<Rootobject>(json);
 
             return result?.webPages.value.Select(item => new SearchResult {
@@ -32,10 +32,10 @@ namespace BusinessLogic
 
 
        
-        private static string GetBingSearchJsonResult(string keywords)
+        private static string GetBingSearchJsonResult(Keyword keywords)
         {
             string JsonString = null;
-            string url = string.Format(template, keywords);
+            string url = string.Format(template, keywords.word);
 
             using (var client = new WebClient())
             {
